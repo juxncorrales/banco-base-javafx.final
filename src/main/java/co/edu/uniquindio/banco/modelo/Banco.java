@@ -16,8 +16,16 @@ import java.util.Random;
 public class Banco {
     private final ArrayList<Usuario> usuarios;
     private final ArrayList<CuentaAhorros> cuentasAhorros;
+    public static Banco INSTANCIA;
 
-    public Banco() {
+    public static Banco getInstancia(){
+        if(INSTANCIA == null){
+            INSTANCIA = new Banco();
+        }
+        return INSTANCIA;
+    }
+
+    private Banco() {
         usuarios = new ArrayList<>();
         cuentasAhorros = new ArrayList<>();
         llenarDatosPrueba();
@@ -85,6 +93,43 @@ public class Banco {
                 .build();
 
         usuarios.add(usuario);
+    }
+
+    public void loginUsers (String correoElectronico,String contrasena)throws Exception{
+        if(correoElectronico == null || correoElectronico.isBlank()){
+            throw new Exception("El Correo electronico es obligatorio");
+        }
+        if(contrasena == null || contrasena.isBlank()){
+            throw new Exception("la contraseña es obligatorio");
+        }
+        boolean usuarioEncontrado = false;
+        for(Usuario usuarios : usuarios){
+            if(usuarios.getCorreoElectronico().equals(correoElectronico) && usuarios.getContrasena().equals(contrasena)){
+                System.out.println("Inicio de sesión exitoso para el usuario: " + usuarios.getNombre());
+                usuarioEncontrado = true;
+                break;
+            }
+        }
+        if(!usuarioEncontrado){
+            throw new Exception("Correo electrónico o contraseña incorrectos");
+        }
+    }
+
+    public String obtenerNumeroCuenta(String identifi) {
+        for (CuentaAhorros cuenta : cuentasAhorros) {
+            if (cuenta.getPropietario().getNumeroIdentificacion().equals(identifi)) {
+                return cuenta.getNumeroCuenta();
+            }
+        }
+        return null;
+    }
+    public String obtenerNombre(String identifi) {
+        for (Usuario usuario : usuarios) {
+            if (usuario.getNumeroIdentificacion().equals(identifi)){
+                return usuario.getNombre();
+            }
+        }
+        return null;
     }
 
     /**
@@ -217,20 +262,18 @@ public class Banco {
      * @return lista de cuentas de ahorros
      * @throws Exception si los datos de acceso son incorrectos
      */
-    public List<CuentaAhorros> consultarCuentasUsario(String identificacion, String contrasena) throws Exception{
+    public String consultarCuentasUsario(String identificacion, String contrasena) throws Exception{
 
         Usuario usuario = validarUsuario(identificacion, contrasena);
 
         if(usuario != null){
-            List<CuentaAhorros> cuentas = new ArrayList<>();
-
-            for(int i = 0; i < cuentasAhorros.size(); i++){
-                if(cuentasAhorros.get(i).getPropietario().getNumeroIdentificacion().equals(identificacion)){
-                    cuentas.add(cuentasAhorros.get(i));
+            String Total = null;
+            for(CuentaAhorros cuenta : cuentasAhorros) {
+                if(cuenta.getPropietario().getNumeroIdentificacion().equals(identificacion)) {
+                    Total = "Numero de cuenta: " +cuenta.getNumeroCuenta() +" saldo: "+ cuenta.getSaldo();
                 }
             }
-
-            return cuentas;
+            return Total;
         }
 
         return null;
@@ -260,7 +303,7 @@ public class Banco {
      * @param numeroIdentificacion número de identificación del usuario
      * @return usuario o null si no existe
      */
-    private Usuario obtenerUsuario(String numeroIdentificacion){
+    public Usuario obtenerUsuario(String numeroIdentificacion){
         for(int i = 0; i < usuarios.size(); i++){
             if(usuarios.get(i).getNumeroIdentificacion().equals(numeroIdentificacion)){
                 return usuarios.get(i);

@@ -14,9 +14,9 @@
       alignment="center" prefHeight="400.0" prefWidth="400.0" spacing="20.0" >
 
     <Label text="Bienvenido a su banco de confianza" >
-      <font>
-         <Font size="18.0" />
-      </font>
+        <font>
+            <Font size="18.0" />
+        </font>
     </Label>
 
     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" >
@@ -27,7 +27,7 @@
 
     <Label text="¿Qué desea hacer?" >
         <font>
-             <Font size="14.0" />
+            <Font size="14.0" />
         </font>
     </Label>
 
@@ -35,5 +35,9 @@
         <Button minWidth="130.0" minHeight="40.0" text="Iniciar sesión" onAction="#irIniciarSesion" style="-fx-background-color: #00807a; -fx-text-fill: white" />
         <Button minWidth="130.0" minHeight="40.0" text="Registrarse" onAction="#irRegistroCliente" style="-fx-background-color: #00807a; -fx-text-fill: white" />
     </HBox>
-
+    <Label text="Anye Daniela Condiza y Juan Corrales" >
+        <font>
+            <Font size="11.0" />
+        </font>
+    </Label>
 </VBox>

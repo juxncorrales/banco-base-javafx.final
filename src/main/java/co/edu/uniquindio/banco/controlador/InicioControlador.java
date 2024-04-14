@@ -56,4 +56,8 @@ public class InicioControlador {
             e.printStackTrace();
         }
     }
+
+    public void cerrarSesion(String numeroIdenti) {
+        System.out.println(numeroIdenti);
+    }
 }

@@ -7,6 +7,41 @@
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="co.edu.uniquindio.banco.controlador.PanelClienteControlador"
-      prefHeight="600.0" prefWidth="800.0" spacing="30.0" style="-fx-padding: 30" >
+      prefHeight="400.0" prefWidth="400.0" alignment="center" spacing="30.0" >
+    <MenuBar>
+        <menus>
+            <Menu text="menu">
+                <items>
+                    <MenuItem text="Actualizar" onAction="#actualizar"/>
+                    <MenuItem text="Cerrar sesión" onAction="#cerrarSessión"/>
+                    <MenuItem text="Recargar Transferencias" onAction="#actualizarPagina"/>
+                    <MenuItem text="Consultar" onAction="#consultar"/>
+                    <MenuItem text="Transferir" onAction="#transferir"/>
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
+    <Label text="Panel Principal de Administración" >
+        <font>
+            <Font size="12.0" />
+        </font>
+    </Label>
+    <HBox spacing="5" alignment="CENTER">
+        <Label fx:id="lblNombre" />
+        <Label fx:id="lblNumero" />
+        <Label fx:id="id" visible="false"/>
+    </HBox>
+    <GridPane alignment="CENTER" hgap="10.0" vgap="10.0">
 
+        <TableView fx:id="tablaTransacciones" prefWidth="370" prefHeight="200">
+            <columns>
+                <TableColumn fx:id="Tipo" text="Tipo" prefWidth="50"/>
+                <TableColumn fx:id="Fecha" text="Fecha" />
+                <TableColumn fx:id="Valor" text="Valor" />
+                <TableColumn fx:id="Usuario" text="Usuario" />
+                <TableColumn fx:id="Categoria" text="Categoria" />
+            </columns>
+        </TableView>
+
+    </GridPane>
 </VBox>
