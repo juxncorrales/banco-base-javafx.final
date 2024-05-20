@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="co.edu.uniquindio.banco.controlador.LoginController">
+    <children>
+        <VBox alignment="CENTER" spacing="10" layoutX="50.0" layoutY="50.0">
+            <TextField fx:id="emailField" promptText="Email" />
+            <PasswordField fx:id="contraseñaField" promptText="Contraseña" />
+            <Button fx:id="loginButton" text="Iniciar Sesión" />
+        </VBox>
+    </children>
+</AnchorPane>
